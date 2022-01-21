@@ -97,7 +97,7 @@ You will need the following dependencies:
 - `rst2man` (available in Docutils, e.g. `apt-get install python-docutils` or `pip install docutils`)
 
 ```shell
-git clone https://github.com/InternetGuru/omgf.git
+git clone https://github.com/kukenc/omgf.git
 cd omgf
 ./configure && make && compiled/install
 ```
@@ -112,6 +112,10 @@ For example:
 ```shell
 PREFIX=/usr make
 ```
+
+### Gentoo users
+
+Can use ebuild `dev-util/omgf` from [kukenc's gentoo-overlay](https://gitlab.com/kukenc/gentoo-overlay).
 
 ## Setup
 
