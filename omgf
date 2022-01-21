@@ -162,7 +162,7 @@ function main {
   # make git return only error to stderr
   function git_tag {
     local out
-    out="$(git tag "$@" 2>&1)" \
+    out="$(git tag --message="$@" "$@" 2>&1)" \
       || err "$out"
   }
 
