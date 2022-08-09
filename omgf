@@ -626,7 +626,13 @@ function main {
     [[ $confirmed == 0 ]] \
       && { confirm "* Create branch '$RELEASE' from current HEAD?" || return 0; }
     git_checkout_branch "$RELEASE"
-    ((minor++))
+    # Check if increasing major
+    if [[ "${major_increase}" == "1" ]]; then
+      ((major++))
+      minor=0
+    else
+      ((minor++))
+    fi
     patch=0
     gf_commit_version \
       && load_version \
@@ -1134,7 +1140,7 @@ function main {
   }
 
   # variables
-  local line script_name master force conform yes verbose dry what_now color prefix pos_x pos_y init request is_stdin gf_branch major minor patch pr_suffix stashed
+  local line script_name master force conform yes verbose dry what_now color prefix pos_x pos_y init request is_stdin gf_branch major minor patch pr_suffix stashed major_increase
   what_now=0
   dry=0
   stashed=0
@@ -1152,6 +1158,7 @@ function main {
   [ -t 0 ]
   is_stdin=$?
   pr_suffix=" (push and get pull request URL)"
+  major_increase=0
 
   # process options
   # shellcheck disable=SC2086
@@ -1159,7 +1166,7 @@ function main {
   if ! line=$(
     IFS=" " getopt -n "$0" \
            -o cfhinrvVwy\? \
-           -l conform,color::,colour::,force,help,init,dry-run,request,verbose,version,what-now,yes \
+           -l conform,color::,colour::,force,help,init,dry-run,request,verbose,version,what-now,yes,major \
            -- $*
   )
   then gf_usage; return 2; fi
@@ -1183,6 +1190,7 @@ function main {
      -V|--version) gf_version; return $? ;;
      -w|--what-now) what_now=1; shift ;;
      -y|--yes) yes=1; shift ;;
+     -m| --major) major_increase=1; shift ;;
       --) shift; break ;;
       *-) echo "$script_name: Unrecognized option '$1'" >&2; gf_usage; return 2 ;;
        *) break ;;
