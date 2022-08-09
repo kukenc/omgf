@@ -158,7 +158,7 @@ Bugfixing on dev...
     -  ``git commit -am "add bugfix 2"``
 
 Create release
-    -  ``gf release``
+    -  ``gf release`` or ``gf --major release``
     -  Confirm by typing ``YES`` (or hit Enter)
 
 Bugfixing on release...
