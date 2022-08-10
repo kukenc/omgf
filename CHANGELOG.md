@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## [Unreleased]
+### Added
+ - Option --major/-m
+
+### Changed
+ - Update .gitignore
+
 ## [2.3.0] - 2022-01-21
 ### Changed
  - Link in README.md
@@ -72,6 +79,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.0.0] - 2016-12-22
 
+[Unreleased]: master..dev
 [2.3.0]: https://github.com/kukenc/omgf/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/InternetGuru/omgf/compare/v2.1.2...v2.2.0
 [2.1.2]: https://github.com/InternetGuru/omgf/compare/v2.1.1...v2.1.2
