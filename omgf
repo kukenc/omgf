@@ -1190,7 +1190,7 @@ function main {
      -V|--version) gf_version; return $? ;;
      -w|--what-now) what_now=1; shift ;;
      -y|--yes) yes=1; shift ;;
-     -m| --major) major_increase=1; shift ;;
+     -m|--major) major_increase=1; shift ;;
       --) shift; break ;;
       *-) echo "$script_name: Unrecognized option '$1'" >&2; gf_usage; return 2 ;;
        *) break ;;
