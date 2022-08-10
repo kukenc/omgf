@@ -107,7 +107,7 @@ OPTIONS
     Print help.
 \-i, --init
     Same as conform, but do not proceed.
-\--major
+\-m, --major
     Used in combination with 'release' keyword to create new release branch
     with next major version (x.0.0).
 \-n, --dry-run
