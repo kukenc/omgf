@@ -107,6 +107,9 @@ OPTIONS
     Print help.
 \-i, --init
     Same as conform, but do not proceed.
+\-m, --major
+    Used in combination with 'release' keyword to create new release branch
+    with next major version (x.0.0).
 \-n, --dry-run
     Do not run commands; only parse user options.
 \-r, --request
@@ -155,7 +158,7 @@ Bugfixing on dev...
     -  ``git commit -am "add bugfix 2"``
 
 Create release
-    -  ``gf release``
+    -  ``gf release`` or ``gf --major release``
     -  Confirm by typing ``YES`` (or hit Enter)
 
 Bugfixing on release...
