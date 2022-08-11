@@ -703,12 +703,47 @@ function main {
       || return $?
   }
 
+  function get_git_provider_from_url {
+    local url provider
+    url="${1}"
+    provider=""
+    case "$url" in
+      *"$GITHUB"*)
+        provider="github"
+      ;;
+      *"$BITBUCKET"*)
+        provider="bitbucket"
+      ;;
+      *"$GITLAB"*)
+        provider="gitlab"
+      ;;
+      *)
+        # Check if url is not specified in custom list
+        if [ ! -z ${SELF_RUNNED_INSTANCES+x} ]; then
+          for field in "${SELF_RUNNED_INSTANCES[@]}"; do
+              local line uri
+              eval "line=(${field})"
+              uri="${line[0]}"
+              if [[ "${url}" == *"${uri}"* ]]; then
+                provider="${line[1]}"
+                break
+              fi
+          done
+        fi
+      ;;
+    esac
+    echo "${provider}"
+  }
+
   function gf_get_compare_url {
+    local provider url
     url="$(git config remote."$OMGF_ORIGIN".url)"
     url="$(trim_url "$url")"
-    case "$url" in
-      *"$GITHUB"*) echo "https://$url/compare/$1...$2" ;;
-      *"$BITBUCKET"*) echo "https://$url/compare/$2..$1" ;;
+    provider=$(get_git_provider_from_url "${url}")
+    case "$provider" in
+      "github") echo "https://$url/compare/$1...$2" ;;
+      "bitbucket") echo "https://$url/compare/$2..$1" ;;
+      "gitlab") echo "https://$url/-/compare/$1...$2" ;;
       *) echo "" ;;
     esac
   }
@@ -1015,22 +1050,23 @@ function main {
   }
 
   function gf_request_url {
-    local url upstream_url to
+    local url upstream_url to provider
     to="${1:-$OMGF_DEV}"
     url="$(git config remote."$OMGF_ORIGIN".url)"
     url="$(trim_url "$url")"
     upstream_url="$(git config remote."$OMGF_UPSTREAM".url)"
     upstream_url="$(trim_url "$upstream_url")"
+    provider=$(get_git_provider_from_url "${url}")
     stdout_verbose
     echo -n "Pull request URL: "
-    case "$url" in
-      *"$GITHUB"*)
+    case "$provider" in
+      "github")
         # shellcheck disable=SC1003
         [[ "$url" == "$upstream_url" ]] \
           && echo "https://$url/compare/$to...$gf_branch?expand=1" \
           || echo "https://$upstream_url/compare/$to...$(echo "$url" | cut -d'/' -f2)%3A$gf_branch?expand=1"
       ;;
-      *"$BITBUCKET"*)
+      "bitbucket")
         # shellcheck disable=SC1003
         [[ "$url" == "$upstream_url" ]] \
           && echo "https://$url/compare/$gf_branch..$(echo "$url" | cut -d'/' -f2-3)%3A$to" \
@@ -1207,6 +1243,7 @@ function main {
     BLUE=4 \
     GITHUB="github.com" \
     BITBUCKET="bitbucket.org" \
+    GITLAB="gitlab.com" \
     HOTFIX="hotfix" \
     RELEASE="release" \
     FEATURE="feature" \
@@ -1226,6 +1263,10 @@ function main {
   par_kw=
   par_name=
   arg_count=$#
+
+  # Check if settings file exist and load it
+  # shellcheck disable=SC1091
+  [[ -f "${HOME}/.config/omgf" ]] && source "${HOME}/.config/omgf"
 
   # silent output by default
   stdout_silent
