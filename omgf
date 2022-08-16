@@ -1073,6 +1073,12 @@ function main {
           && echo "https://$url/compare/$gf_branch..$(echo "$url" | cut -d'/' -f2-3)%3A$to" \
           || echo "https://$url/compare/$gf_branch..$(echo "$upstream_url" | cut -d'/' -f2-3)%3A$to"
       ;;
+      "gitlab")
+        # shellcheck disable=SC1003
+        [[ "$url" == "$upstream_url" ]] \
+          && echo "https://$url/-/compare/$to...$gf_branch?expand=1" \
+          || echo "https://$upstream_url/-/compare/$to...$(echo "$url" | cut -d'/' -f2)%3A$gf_branch?expand=1"
+      ;;
       *)
         err "unknown - remote server name not recognized"
         stdout_silent
