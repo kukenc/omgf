@@ -255,7 +255,7 @@ See the [man page][man] for more information and examples.
 
 ## Custom configuration
 
-Latest version of omgf support usage of an optional custom configuration file: `${HOME}/.config/omgf`
+Latest version of omgf support usage of an optional custom configuration file: `${HOME}/.config/omgf` or secondary `/etc/omgf`
 
 For now, only supported field is `SELF_RUNNED_INSTANCES` which contain array of urls/providers of git remotes
 others than public ones (gitlab.com, github.com, bitbucket.org). For example, this is needed for ones running
