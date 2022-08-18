@@ -1272,7 +1272,7 @@ function main {
   arg_count=$#
 
   # Check if settings file exist and load it
-  # shellcheck disable=SC1091
+  # shellcheck source=/dev/null
   [[ -f "${HOME}/.config/omgf" ]] && source "${HOME}/.config/omgf"
 
   # silent output by default
