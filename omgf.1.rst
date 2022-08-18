@@ -234,6 +234,17 @@ EXIT STATUS
 5
     Git conflict occurred.
 
+CUSTOM CONFIGURATION (optional)
+===============================
+
+Placed in: ``${HOME}/.config/omgf``
+
+``
+# Configuration file for OMGF
+
+declare -a SELF_RUNNED_INSTANCES=("mygit.example.com github" "git.example.local gitlab")
+``
+
 SEE ALSO
 ========
 

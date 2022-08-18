@@ -24,19 +24,23 @@ OMGF can:
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Installation](#installation)
-  - [Requirements](#requirements)
-  - [Single File Script](#single-file-script)
-  - [Compiled Distribution Package](#compiled-distribution-package)
-  - [Building From Source](#building-from-source)
-- [Setup](#setup)
-- [Usage](#usage)
-- [Alternatives](#alternatives)
-- [Maintainers](#maintainers)
-- [Contributing](#contributing)
-- [Donation](#donation)
-  - [Donors](#donors)
-- [License](#license)
+- [Oh My Git Flow _(OMGF)_](#oh-my-git-flow-omgf)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Requirements](#requirements)
+    - [Single File Script](#single-file-script)
+    - [Compiled Distribution Package](#compiled-distribution-package)
+    - [Building From Source](#building-from-source)
+    - [Gentoo users](#gentoo-users)
+  - [Setup](#setup)
+  - [Usage](#usage)
+  - [Custom configuration](#custom-configuration)
+  - [Alternatives](#alternatives)
+  - [Maintainers](#maintainers)
+  - [Contributing](#contributing)
+  - [Donation](#donation)
+    - [Donors](#donors)
+  - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -248,6 +252,22 @@ gf release
 </details>
 
 See the [man page][man] for more information and examples.
+
+## Custom configuration
+
+Latest version of omgf support usage of an optional custom configuration file: `${HOME}/.config/omgf` or secondary `/etc/omgf`
+
+For now, only supported field is `SELF_RUNNED_INSTANCES` which contain array of urls/providers of git remotes
+others than public ones (gitlab.com, github.com, bitbucket.org). For example, this is needed for ones running
+self instances of gitlab with url `git.example.local`.
+Without this, Omgf/git is unable to detect provider so it will not generate diff links in Changelogs.
+
+Example of config:
+```bash
+# Configuration file for OMGF
+
+declare -a SELF_RUNNED_INSTANCES=("mygit.example.com github" "git.example.local gitlab")
+```
 
 ## Alternatives
 
