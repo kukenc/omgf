@@ -943,13 +943,13 @@ function main {
     local confirm_suffix into
     [[ $request == 1 ]] && confirm_suffix="$pr_suffix" || confirm_suffix=
     # master -> merge hotfix into master and dev
-    if ! git_version_diff master "$major.$minor"; then
+    #if ! git_version_diff master "$major.$minor"; then
       into=master
       confirm "* Merge hotfix into master and '$OMGF_DEV'$confirm_suffix?" || return 0
-    else
-      into="$master"
-      confirm "* Merge hotfix into stable branch '$master'$confirm_suffix?" || return 0
-    fi
+    #else
+    #  into="$master"
+    #  confirm "* Merge hotfix into stable branch '$master'$confirm_suffix?" || return 0
+    #fi
     if [[ -n "$(additional_commits "$into")" ]]; then
       gf_prepare_to_merge "$into" \
         && patch=$((patch+1)) \
