@@ -1,8 +1,9 @@
 # Oh My Git Flow _(OMGF)_
 
-[![Build Status](https://travis-ci.org/InternetGuru/omgf.svg?branch=master)](https://travis-ci.org/InternetGuru/omgf)
-
 > Use Git Flow with ease – maintain branches, semantic versioning, releases, and changelog with a single command.
+
+See talk of original software author [Git Flow v praxi (Jiří Pavelka)](https://www.youtube.com/watch?v=Av0XC3hAZVY).
+
 
 Oh My Git Flow (aka _OMGF_) is the simplest way to use [Git Flow branching model][model]. When you run OMGF in a git repository, the tool will check the current state of your repo and executes appropriate commands.
 
@@ -47,7 +48,7 @@ OMGF can:
 
 ## Installation
 
-Download the [latest release from GitHub](https://github.com/InternetGuru/omgf/releases/latest). You can install OMGF as a single file (easiest), with compiled distribution package (useful for system-wide install) or from source.
+Download the latest release. You can install OMGF as a single file (easiest), with compiled distribution package (useful for system-wide install) or from source.
 
 ### Requirements
 
@@ -280,10 +281,9 @@ declare -a SELF_RUNNED_INSTANCES=("mygit.example.com github" "git.example.local 
 - [SourceTree](https://www.sourcetreeapp.com/) – Git GUI for macOS and Windows with Git Flow support.
 - [GitFlow for Visual Studio](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)
 
-## Maintainers
+## Maintainer
 
--  Pavel Petržela pavel.petrzela@internetguru.cz
--  Jiří Pavelka jiri.pavelka@internetguru.cz
+-  Martin Kužel @kukenc
 
 ## Contributing
 
