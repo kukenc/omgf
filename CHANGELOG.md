@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
-## [Unreleased]
+## [2.5.3] - 2024-08-14
 ### Changed
  - Replace sed by gsed for macos users
 
@@ -98,7 +98,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.0.0] - 2016-12-22
 
-[Unreleased]: https://github.com/kukenc/omgf/compare/master...dev
+[2.5.3]: https://github.com/kukenc/omgf/compare/v2.5.2...v2.5.3
 [2.5.2]: https://github.com/kukenc/omgf/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/kukenc/omgf/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/kukenc/omgf/compare/v2.4.0...v2.5.0
