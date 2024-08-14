@@ -59,7 +59,9 @@ Download the latest release. You can install OMGF as a single file (easiest), wi
 - [GNU sed](https://www.gnu.org/software/sed/)
   - On macOS install with Homebrew [`gnu-sed`](http://braumeister.org/formula/gnu-sed)
 - [GNU awk](https://www.gnu.org/software/gawk/)
-  - On macOS install with Homebrew [`homebrew/dupes/grep`](https://github.com/Homebrew/homebrew-dupes)
+  - On macOS install with Homebrew [`gawk`](https://formulae.brew.sh/formula/gawk)
+- [GNU coreutils](https://www.gnu.org/software/coreutils/)
+  - On macOS install with Homebrew [`coreutils`](https://formulae.brew.sh/formula/coreutils)
 
 ### Single File Script
 
