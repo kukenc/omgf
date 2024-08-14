@@ -118,7 +118,7 @@ function main {
   }
 
   function trim {
-    echo "$1" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+    echo "$1" | gsed 's/^[[:space:]]*//;s/[[:space:]]*$//'
   }
 
   function confirm {
@@ -614,7 +614,7 @@ function main {
     last_merge="$(git reflog show dev --format="%h:%gs" | grep -m1 ":merge release:" | cut -d: -f1)"
     # commits on dev before last release merge
     valid_commits="$(git reflog show dev --format="%H")"
-    [[ -n "$last_merge" ]] && valid_commits="$(echo "$valid_commits" | sed "/$last_merge/Q")"
+    [[ -n "$last_merge" ]] && valid_commits="$(echo "$valid_commits" | gsed "/$last_merge/Q")"
     # on invalid commit?
     if ! echo "$valid_commits" | grep -q "$(git_current_commit)"; then
       gf_confirm_checkout "$OMGF_DEV" "* Unable to create '$RELEASE' from current commit, create '$RELEASE' from '$OMGF_DEV'?" \
@@ -849,7 +849,7 @@ function main {
     echo "* Please enter the $gf_branch description for $OMGF_CHANGELOG."
     echo "*"
     echo "* Keywords:"
-    echo "*   $(echo "${CHANGELOG_KEYWORDS[@]}" | sed "s/ /, /g;s/${CHANGELOG_KEYWORDS[$1]}/${CHANGELOG_KEYWORDS[$1]} (default)/")"
+    echo "*   $(echo "${CHANGELOG_KEYWORDS[@]}" | gsed "s/ /, /g;s/${CHANGELOG_KEYWORDS[$1]}/${CHANGELOG_KEYWORDS[$1]} (default)/")"
     echo "*"
     echo "* Commits of '$gf_branch':"
     echo "$commits"
@@ -1109,7 +1109,7 @@ function main {
     # shellcheck disable=SC2004
     [[ $COLUMNS -gt 1 ]] && shift_left=5 && export MANWIDTH=$((COLUMNS+$shift_left))
     # shellcheck disable=SC2005
-    echo "$other_content" | man --nj --nh -l - | sed "1,2d;/^[[:space:]]*$/d;\$d;s/^ \{$shift_left\}//"
+    echo "$other_content" | man --nj --nh -l - | gsed "1,2d;/^[[:space:]]*$/d;\$d;s/^ \{$shift_left\}//"
   }
 
   function gf_version {
