@@ -63,6 +63,32 @@ Download the latest release. You can install OMGF as a single file (easiest), wi
 - [GNU coreutils](https://www.gnu.org/software/coreutils/)
   - On macOS install with Homebrew [`coreutils`](https://formulae.brew.sh/formula/coreutils)
 
+In addition, we recommend using the following settings on macOS:
+
+```
+$ cat ~/.zshrc
+alias gf="omgf --what-now"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
+```
+
+```
+$ cat ~/.bash_profile
+#!/bin/bash
+test -f ~/.bashrc && source ~/.bashrc
+```
+
+```
+cat ~/.bashrc
+alias gf="omgf --what-now"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
+```
+
 ### Single File Script
 
 1. Place `omgf.sh` into your `$PATH` (e.g. `~/bin`),
