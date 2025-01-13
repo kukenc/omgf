@@ -391,6 +391,12 @@ function main {
         OMGF_SED="sed"
       fi
     fi
+    if ! [ -x "$(command -v gawk)" ]; then
+        err "OMGF requires gawk installed" || return 1
+    fi
+    if ! [ -x "$(command -v getopt)" ]; then
+        err "OMGF requires getopt installed" || return 1
+    fi
   }
 
   # 1) validate repository existence
