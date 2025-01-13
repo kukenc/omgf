@@ -638,7 +638,7 @@ function main {
       confirmed=1
     fi
     # HEAD and master has no diff, nothing to do
-    [[ -n "$(git diff HEAD '$OMGF_MASTER')" ]] \
+    [[ -n "$(git diff HEAD $OMGF_MASTER)" ]] \
       || err "Current HEAD is same as branch '$OMGF_MASTER', nothing to do" \
       || return 1
     [[ $confirmed == 0 ]] \
