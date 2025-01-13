@@ -25,6 +25,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).}
 # shellcheck disable=SC2086
 : ${OMGF_NOPREFIX:=}
+# shellcheck disable=SC2086
+: ${OMGF_sed:=gsed}
 : ${COLUMNS:=$(tput cols)}
 : ${LINES:=$(tput lines)}
 : "${GLOBAL_CONFIG_FILE:=/etc/omgf}"
@@ -120,7 +122,7 @@ function main {
   }
 
   function trim {
-    echo "$1" | gsed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+    echo "$1" | "$OMGF_SED" 's/^[[:space:]]*//;s/[[:space:]]*$//'
   }
 
   function confirm {
@@ -381,6 +383,14 @@ function main {
     verlte "$git_min_version" "$git_version" \
       || err "OMGF requires Git version $git_min_version or later (you have ${git_version:-no Git installed})" \
       || return 1
+    # Check for GNU sed first (prefered on MacOS)
+    if ! [ -x "$(command -v gsed)" ]; then
+      if ! [ -x "$(command -v sed)" ]; then
+        err "OMGF requires sed or gsed installed" || return 1
+      else
+        OMGF_SED="sed"
+      fi
+    fi
   }
 
   # 1) validate repository existence
@@ -620,7 +630,7 @@ function main {
     last_merge="$(git reflog show dev --format="%h:%gs" | grep -m1 ":merge release:" | cut -d: -f1)"
     # commits on dev before last release merge
     valid_commits="$(git reflog show dev --format="%H")"
-    [[ -n "$last_merge" ]] && valid_commits="$(echo "$valid_commits" | gsed "/$last_merge/Q")"
+    [[ -n "$last_merge" ]] && valid_commits="$(echo "$valid_commits" | "$OMGF_SED" "/$last_merge/Q")"
     # on invalid commit?
     if ! echo "$valid_commits" | grep -q "$(git_current_commit)"; then
       gf_confirm_checkout "$OMGF_DEV" "* Unable to create '$RELEASE' from current commit, create '$RELEASE' from '$OMGF_DEV'?" \
@@ -855,7 +865,7 @@ function main {
     echo "* Please enter the $gf_branch description for $OMGF_CHANGELOG."
     echo "*"
     echo "* Keywords:"
-    echo "*   $(echo "${CHANGELOG_KEYWORDS[@]}" | gsed "s/ /, /g;s/${CHANGELOG_KEYWORDS[$1]}/${CHANGELOG_KEYWORDS[$1]} (default)/")"
+    echo "*   $(echo "${CHANGELOG_KEYWORDS[@]}" | "$OMGF_SED" "s/ /, /g;s/${CHANGELOG_KEYWORDS[$1]}/${CHANGELOG_KEYWORDS[$1]} (default)/")"
     echo "*"
     echo "* Commits of '$gf_branch':"
     echo "$commits"
@@ -1115,7 +1125,7 @@ function main {
     # shellcheck disable=SC2004
     [[ $COLUMNS -gt 1 ]] && shift_left=5 && export MANWIDTH=$((COLUMNS+$shift_left))
     # shellcheck disable=SC2005
-    echo "$other_content" | man --nj --nh -l - | gsed "1,2d;/^[[:space:]]*$/d;\$d;s/^ \{$shift_left\}//"
+    echo "$other_content" | man --nj --nh -l - | "$OMGF_SED" "1,2d;/^[[:space:]]*$/d;\$d;s/^ \{$shift_left\}//"
   }
 
   function gf_version {
