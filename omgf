@@ -410,16 +410,18 @@ function main {
       git init >/dev/null || return 1
       msg_end "$DONE"
     fi
+
+    if git_local_branch_exists "master"; then
+      # If old naming used, fill correct name
+      OMGF_MASTER="master"
+
     if ! git_has_commits; then
       [[ $conform == 0 ]] && { err "Git repository without commits" || return 3; }
       initial_commit || return $?
-    elif ! git_local_branch_exists $OMGF_MASTER || ! git_local_branch_exists main; then
+
+    elif git_local_branch_exists "$OMGF_MASTER"; then
       [[ $conform == 0 ]] && { err "Missing branch 'main' or 'master'" || return 3; }
       git_branch_create $OMGF_MASTER || return 1
-    fi
-    # If old naming used, fill correct name
-    if git_local_branch_exists master; then
-      OMGF_MASTER="master"
     fi
   }
 
