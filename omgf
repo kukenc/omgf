@@ -414,6 +414,7 @@ function main {
     if git_local_branch_exists "master"; then
       # If old naming used, fill correct name
       OMGF_MASTER="master"
+    fi
 
     if ! git_has_commits; then
       [[ $conform == 0 ]] && { err "Git repository without commits" || return 3; }
