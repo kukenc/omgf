@@ -420,7 +420,7 @@ function main {
       [[ $conform == 0 ]] && { err "Git repository without commits" || return 3; }
       initial_commit || return $?
 
-    elif git_local_branch_exists "$OMGF_MASTER"; then
+    elif ! git_local_branch_exists "$OMGF_MASTER"; then
       [[ $conform == 0 ]] && { err "Missing branch 'main' or 'master'" || return 3; }
       git_branch_create $OMGF_MASTER || return 1
     fi
