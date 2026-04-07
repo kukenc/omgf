@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
-## [Unreleased]
+## [2.5.5] - 2026-04-07
 ### Changed
  - Update README.md
 
@@ -106,7 +106,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.0.0] - 2016-12-22
 
-[Unreleased]: https://github.com/kukenc/omgf/compare/master...dev
+[2.5.5]: https://github.com/kukenc/omgf/compare/v2.5.4...v2.5.5
 [2.5.4]: https://github.com/kukenc/omgf/compare/v2.5.3...v2.5.4
 [2.5.3]: https://github.com/kukenc/omgf/compare/v2.5.2...v2.5.3
 [2.5.2]: https://github.com/kukenc/omgf/compare/v2.5.1...v2.5.2
