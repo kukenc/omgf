@@ -68,10 +68,6 @@ In addition, we recommend using the following settings on macOS:
 ```
 $ cat ~/.zshrc
 alias gf="omgf --what-now"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
 ```
 
 ```
@@ -83,11 +79,11 @@ test -f ~/.bashrc && source ~/.bashrc
 ```
 cat ~/.bashrc
 alias gf="omgf --what-now"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
 ```
+
+**WARNING:** In order for tools installed via Homebrew to be available to the script,
+you must add their paths to the `PATH` variable. Each program printed instructions
+during installation on how to correctly set the `PATH` variable for individual programs.
 
 ### Single File Script
 
